@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Rehzon Grid Systems — Battery-Free Verification Infrastructure</title>
+<meta name="description" content="Rehzon Grid Systems builds battery-free verification infrastructure for defense and regulated logistics. Detect temperature excursions, tampering, and seal breach at every custody transfer point. No batteries. No retrieval. No failure.">
+<meta name="keywords" content="battery-free verification, cold chain logistics, defense logistics, DLA, regulated logistics, tamper detection, passive sensing, custody verification, supply chain integrity, Rehzon Grid, Umanah Systems Group">
+<meta name="author" content="Rehzon Grid Systems — A Umanah Systems Group Program">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#07090D">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://umanahsystems.com/">
+<meta property="og:title" content="Rehzon Grid Systems — Battery-Free Verification Infrastructure">
+<meta property="og:description" content="Battery-free verification infrastructure for defense and regulated logistics. Verify materiel integrity, exposure, tampering, and custody at every transfer point.">
+<meta property="og:image" content="https://umanahsystems.com/og-image.png">
+<meta property="og:site_name" content="Rehzon Grid Systems">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://umanahsystems.com/">
+<meta name="twitter:title" content="Rehzon Grid Systems — Battery-Free Verification Infrastructure">
+<meta name="twitter:description" content="Battery-free verification infrastructure for defense and regulated logistics. No batteries. No retrieval. Pass/fail at every custody transfer point.">
+<meta name="twitter:image" content="https://umanahsystems.com/og-image.png">
+<link rel="canonical" href="https://umanahsystems.com/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2307090D'/><text y='.9em' font-size='80' fill='%2338d47a'>R</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#07090D;--steel:#0D1218;--card:#101820;--rule:#1A2530;
+  --muted:#4a6070;--body:#c8dae6;--white:#EEF2F5;
+  --accent:#38d47a;--accent2:#26a05a;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;text-align:center;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+.grid-lines{position:fixed;inset:0;background-image:linear-gradient(rgba(56,212,122,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(56,212,122,0.025) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;z-index:0;}
+.accent-bar{height:3px;background:linear-gradient(90deg,transparent,var(--accent),transparent);position:relative;z-index:1;}
+
+/* KEYFRAMES */
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 8px var(--accent);}50%{opacity:0.2;box-shadow:none;}}
+@keyframes accentPulse{0%,100%{text-shadow:0 0 0 transparent;}50%{text-shadow:0 0 24px rgba(56,212,122,0.4);}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:rgba(7,9,13,0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--rule);animation:slideDown 0.6s ease both;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.1em;color:var(--white);text-decoration:none;transition:color 0.2s;}
+.nav-logo span{color:var(--accent);}
+.nav-logo:hover{color:var(--accent);}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);text-decoration:none;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.3s ease;}
+.nav-links a:hover{color:var(--accent);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);background:var(--accent);padding:10px 22px;text-decoration:none;font-weight:500;transition:background 0.2s,transform 0.15s;}
+.nav-cta:hover{background:var(--accent2);transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);transition:all 0.3s;}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(7,9,13,0.98);border-bottom:1px solid var(--rule);padding:24px;z-index:499;flex-direction:column;align-items:center;gap:20px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);text-decoration:none;transition:color 0.2s;}
+.mobile-menu a:hover{color:var(--accent);}
+.mobile-menu .nav-cta{margin-top:8px;}
+
+/* HERO */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:140px 24px 80px;overflow:hidden;}
+#hero::before{content:'';position:absolute;top:20%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(56,212,122,0.06) 0%,transparent 70%);pointer-events:none;}
+.hero-bg-text{position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(100px,20vw,300px);color:rgba(56,212,122,0.018);letter-spacing:0.05em;line-height:1;pointer-events:none;user-select:none;white-space:nowrap;}
+.hero-content{position:relative;z-index:1;max-width:900px;width:100%;display:flex;flex-direction:column;align-items:center;}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;display:flex;align-items:center;justify-content:center;gap:14px;animation:fadeIn 0.8s ease 0.2s both;}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:32px;height:1px;background:var(--accent);}
+.hero-headline{font-family:'Bebas Neue',sans-serif;font-size:clamp(68px,12vw,148px);line-height:0.88;letter-spacing:0.02em;margin-bottom:32px;animation:fadeUp 0.8s ease 0.35s both;text-align:center;}
+.hero-headline .line-accent{color:var(--accent);animation:accentPulse 4s ease-in-out infinite;display:inline-block;}
+.hero-sub{font-size:clamp(15px,2vw,19px);color:var(--white);max-width:580px;line-height:1.7;margin-bottom:48px;font-weight:300;text-align:center;animation:fadeUp 0.8s ease 0.5s both;}
+.hero-sub strong{color:var(--white);font-weight:600;}
+.hero-actions{display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.8s ease 0.65s both;}
+.btn-primary{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--black);background:var(--accent);padding:16px 36px;text-decoration:none;font-weight:500;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;display:inline-block;}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(56,212,122,0.2);}
+.btn-ghost{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);border:1px solid var(--rule);padding:16px 36px;text-decoration:none;transition:border-color 0.2s,color 0.2s,transform 0.15s;display:inline-block;}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+.hero-stats{display:flex;margin-top:72px;border:1px solid var(--rule);background:var(--card);width:100%;max-width:720px;animation:fadeUp 0.8s ease 0.8s both;}
+.hero-stat{flex:1;padding:20px 12px;border-right:1px solid var(--rule);display:flex;flex-direction:column;align-items:center;}
+.hero-stat:last-child{border-right:none;}
+.hero-stat-num{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--accent);line-height:1;}
+.hero-stat-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);margin-top:5px;text-align:center;}
+
+/* SECTIONS */
+.section{position:relative;z-index:1;padding:120px 24px;border-top:1px solid var(--rule);}
+.section-inner{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;align-items:center;}
+.section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:12px;}
+.section-label::before,.section-label::after{content:'';display:block;width:32px;height:1px;background:var(--accent);}
+h2.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,6vw,80px);letter-spacing:0.02em;line-height:0.92;margin-bottom:24px;text-align:center;}
+h2.section-title .acc{color:var(--accent);}
+.section-body{font-size:16px;color:var(--white);max-width:660px;line-height:1.8;margin-bottom:16px;text-align:center;}
+.section-body strong{color:var(--white);font-weight:600;}
+
+/* PROBLEM */
+#problem{background:var(--steel);}
+.problem-statement-wrap{width:100%;max-width:780px;margin:32px auto 48px;display:flex;flex-direction:column;gap:32px;}
+.problem-fact{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--rule);padding-left:24px;text-align:left;}
+.problem-fact-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.problem-fact p{font-size:17px;color:var(--white);line-height:1.7;font-weight:300;}
+.problem-fact p strong{color:var(--accent);font-weight:600;}
+.problem-divider{width:100%;height:1px;background:var(--rule);margin:8px 0;}
+.problem-payoff{text-align:center;padding-top:8px;}
+.problem-payoff-line{font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);margin-bottom:16px;}
+.problem-payoff-headline{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);line-height:0.95;letter-spacing:0.02em;color:var(--white);}
+.problem-payoff-headline .acc{color:var(--accent);}
+@media(max-width:768px){.problem-fact{border-left:none;padding-left:0;text-align:center;}}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);width:100%;margin-bottom:56px;}
+.stat-card{background:var(--card);padding:28px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:background 0.2s;}
+.stat-card:hover{background:#141e2a;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,52px);color:var(--accent);line-height:1;margin-bottom:8px;}
+.stat-desc{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--white);line-height:1.5;margin-bottom:8px;}
+.stat-source{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.06em;color:var(--muted);}
+.model-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);width:100%;}
+.model-col{background:var(--card);padding:36px 28px;display:flex;flex-direction:column;align-items:center;}
+.model-col.fail{background:rgba(255,60,60,0.04);}
+.model-col.win{background:rgba(56,212,122,0.04);}
+.model-heading{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--rule);width:100%;text-align:center;}
+.model-col.fail .model-heading{color:#e05555;}
+.model-col.win .model-heading{color:var(--accent);}
+.model-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;font-size:14px;line-height:1.6;text-align:left;width:100%;color:var(--white);}
+.mi-icon{flex-shrink:0;margin-top:2px;font-size:13px;}
+
+/* CAPABILITIES */
+#capabilities{}
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);width:100%;margin-top:48px;}
+.cap-card{background:var(--card);padding:36px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:background 0.2s;position:relative;overflow:hidden;}
+.cap-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform 0.3s ease;}
+.cap-card:hover{background:#141e2a;}
+.cap-card:hover::after{transform:scaleX(1);}
+.cap-num{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--accent);line-height:1;opacity:0.35;margin-bottom:16px;}
+.cap-title{font-size:15px;font-weight:600;color:var(--white);margin-bottom:12px;letter-spacing:0.02em;}
+.cap-body{font-size:13px;color:var(--white);line-height:1.7;}
+
+/* FLOW */
+.flow-wrap{width:100%;margin:56px 0 0;overflow-x:auto;}
+.flow-track{display:flex;align-items:stretch;min-width:600px;border:1px solid var(--rule);background:var(--rule);gap:1px;}
+.flow-node{flex:1;background:var(--card);padding:24px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+.flow-node.active{background:rgba(56,212,122,0.06);border-bottom:2px solid var(--accent);}
+.flow-step{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);margin-bottom:10px;}
+.flow-label{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--white);line-height:1.1;}
+.flow-node.active .flow-label{color:var(--accent);}
+.flow-node.active .flow-step{color:var(--accent);}
+
+/* FEATURE IMAGE */
+.feature-image-wrap{width:100%;margin-top:64px;border:1px solid var(--rule);overflow:hidden;position:relative;}
+.feature-image-wrap img{width:100%;height:auto;display:block;object-fit:cover;}
+.feature-image-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);margin-top:16px;text-align:center;}
+
+/* DUAL USE */
+#dualuse{background:var(--steel);}
+.du-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);width:100%;margin-top:48px;}
+.du-col{background:var(--card);padding:48px 36px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+.du-badge{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;padding:6px 16px;border:1px solid;margin-bottom:28px;display:inline-block;}
+.du-col.defense .du-badge{color:var(--accent);border-color:var(--accent);background:rgba(56,212,122,0.06);}
+.du-col.commercial .du-badge{color:#7eb8e0;border-color:#7eb8e0;background:rgba(126,184,224,0.06);}
+.du-heading{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,3vw,38px);color:var(--white);margin-bottom:16px;line-height:1;}
+.du-body{font-size:14px;color:var(--white);line-height:1.8;margin-bottom:28px;max-width:380px;}
+.du-list{list-style:none;width:100%;display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+.du-list li{background:var(--steel);padding:12px 16px;font-size:13px;color:var(--white);text-align:center;transition:background 0.2s,color 0.2s;}
+.du-list li:hover{background:#141e2a;color:var(--white);}
+
+/* PILOT */
+#pilot{}
+.pilot-status{display:inline-flex;align-items:center;gap:10px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(56,212,122,0.3);padding:8px 20px;margin-bottom:48px;}
+.status-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:blink 2s ease-in-out infinite;}
+.pilot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);width:100%;margin-bottom:48px;}
+.pilot-card{background:var(--card);padding:32px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:background 0.2s;}
+.pilot-card:hover{background:#141e2a;}
+.pilot-num{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--accent);line-height:1;opacity:0.3;margin-bottom:12px;}
+.pilot-title{font-size:15px;font-weight:600;color:var(--white);margin-bottom:10px;}
+.pilot-body{font-size:13px;color:var(--white);line-height:1.7;}
+.metrics-table{width:100%;border:1px solid var(--rule);background:var(--rule);display:flex;flex-direction:column;gap:1px;}
+.metric-row{background:var(--card);padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:16px;font-size:14px;}
+.metric-name{color:var(--white);}
+.metric-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(56,212,122,0.3);padding:3px 10px;flex-shrink:0;}
+
+/* CONTACT */
+#contact{background:var(--steel);}
+.contact-statement{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3vw,36px);line-height:1.1;letter-spacing:0.04em;color:var(--white);text-align:center;margin:32px auto 48px;max-width:600px;}
+.contact-statement .acc{color:var(--accent);}
+.contact-items{display:flex;gap:1px;background:var(--rule);border:1px solid var(--rule);width:100%;max-width:680px;margin-bottom:48px;}
+.contact-item{flex:1;background:var(--card);padding:20px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+.contact-item-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);margin-bottom:6px;}
+.contact-item-val{font-size:13px;color:var(--white);font-weight:400;}
+.contact-item-val a{color:var(--accent);text-decoration:none;}
+.contact-item-val a:hover{text-decoration:underline;}
+.contact-form{width:100%;max-width:640px;display:flex;flex-direction:column;gap:16px;}
+.form-field{display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:100%;}
+.form-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);}
+input,select,textarea{width:100%;background:var(--card);border:1px solid var(--rule);color:var(--white);padding:14px 18px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;outline:none;transition:border-color 0.2s;-webkit-appearance:none;}
+input::placeholder,textarea::placeholder{color:var(--muted);font-size:13px;}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);}
+select{cursor:pointer;}
+select option{background:var(--card);color:var(--white);}
+textarea{min-height:120px;resize:vertical;}
+.form-submit{text-align:center;width:100%;}
+.form-submit button{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--black);background:var(--accent);border:none;padding:16px 40px;cursor:pointer;font-weight:500;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;width:100%;}
+.form-submit button:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(56,212,122,0.2);}
+.form-submit button:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+
+/* FOOTER */
+footer{padding:48px 24px 32px;display:flex;flex-direction:column;align-items:center;gap:12px;border-top:1px solid var(--rule);position:relative;z-index:1;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.1em;color:var(--white);}
+.footer-logo span{color:var(--accent);}
+.footer-tagline{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);}
+.footer-usg{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);}
+.footer-links{display:flex;align-items:center;justify-content:center;gap:10px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--white);text-transform:uppercase;}
+.footer-links a{color:var(--white);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--accent);}
+.footer-copy{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--white);text-transform:uppercase;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:16px 20px;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .section{padding:80px 20px;}
+  .hero-stats{flex-direction:column;}
+  .hero-stat{border-right:none;border-bottom:1px solid var(--rule);}
+  .hero-stat:last-child{border-bottom:none;}
+  .stat-grid{grid-template-columns:repeat(2,1fr);}
+  .model-grid{grid-template-columns:1fr;}
+  .cap-grid{grid-template-columns:1fr;}
+  .du-grid{grid-template-columns:1fr;}
+  .pilot-grid{grid-template-columns:1fr;}
+  .contact-items{flex-direction:column;}
+  .flow-track{flex-direction:column;min-width:unset;}
+  footer{text-align:center;align-items:center;}
+}
+@media(max-width:480px){
+  .stat-grid{grid-template-columns:1fr;}
+  .hero-actions{flex-direction:column;width:100%;}
+  .btn-primary,.btn-ghost{width:100%;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="grid-lines"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Rehzon<span> Grid</span></a>
+  <ul class="nav-links">
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#capabilities">Capabilities</a></li>
+    <li><a href="#dualuse">Defense & Commercial</a></li>
+    <li><a href="#pilot">Pilot</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get Involved</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#problem" onclick="closeMobile()">Problem</a>
+  <a href="#capabilities" onclick="closeMobile()">Capabilities</a>
+  <a href="#dualuse" onclick="closeMobile()">Defense & Commercial</a>
+  <a href="#pilot" onclick="closeMobile()">Pilot</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="#contact" class="nav-cta" onclick="closeMobile()">Get Involved</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text">VERIFY</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">A Umanah Systems Group Program</div>
+    <h1 class="hero-headline">
+      Verify<br>Before<br><span class="line-accent">Transfer</span>
+    </h1>
+    <p class="hero-sub">
+      Battery-free verification infrastructure for <strong>defense and regulated logistics.</strong>
+      Detect temperature excursions, tampering, and seal breach at every custody transfer point.
+      No batteries. No retrieval. No failure.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Request Pilot Discussion</a>
+      <a href="#problem" class="btn-ghost">See the Problem →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">0</div>
+        <div class="hero-stat-label">Batteries Required</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">0</div>
+        <div class="hero-stat-label">Devices to Retrieve</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">Pass/Fail</div>
+        <div class="hero-stat-label">At Every Transfer Point</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-label">Markets · Defense & Commercial</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem" class="section">
+  <div class="section-inner">
+    <div class="section-label reveal">The Problem</div>
+    <h2 class="section-title reveal">THE<br><span class="acc">MODEL PROBLEM.</span></h2>
+    <p class="section-body reveal">Whether you are moving food through a distribution network, regulated goods across a supply chain, or medical materiel through a defense logistics node — every verification solution in use today requires the same thing: a battery, a retrieval, or a person. None produce a governed pass/fail at the moment custody changes hands.</p>
+
+    <div class="problem-statement-wrap reveal">
+      <div class="problem-fact">
+        <div class="problem-fact-eyebrow">Commercial &amp; Regulated Logistics</div>
+        <p>The US cold chain moves <strong>$94 billion</strong> in temperature-sensitive goods every year. Seven to nine percent of those shipments experience a temperature excursion. Problems are discovered at receiving — after the load is already a loss or a dispute.</p>
+      </div>
+      <div class="problem-fact">
+        <div class="problem-fact-eyebrow">Defense &amp; Government</div>
+        <p>DoD OIG found <strong>28,594 items omitted from accountability records</strong> at a single forward logistics element. Different industry. Different buyer. The same monitor-retrieve-process model. The same failure mode.</p>
+      </div>
+      <div class="problem-divider"></div>
+      <div class="problem-payoff">
+        <div class="problem-payoff-line">Different industries. Different buyers.</div>
+        <div class="problem-payoff-headline">The Same <span class="acc">Broken</span> Model.</div>
+      </div>
+    </div>
+
+    <div class="stat-grid reveal">
+      <div class="stat-card">
+        <div class="stat-num">$94B</div>
+        <div class="stat-desc">US cold chain logistics market 2024 — the network Rehzon Grid serves</div>
+        <div class="stat-source">GMI Insights / Mordor Intelligence</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">7–9%</div>
+        <div class="stat-desc">of all US cold shipments experience temperature excursions — discovered after transfer</div>
+        <div class="stat-source">Market Reports World, Cold Chain Analysis</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">28,594</div>
+        <div class="stat-desc">items omitted from accountability records at a single DoD logistics node</div>
+        <div class="stat-source">DoD OIG Audit DODIG-2020-120</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">$161B</div>
+        <div class="stat-desc">annual US food loss value — 30% of the food supply lost or wasted</div>
+        <div class="stat-source">USDA Economic Research Service</div>
+      </div>
+    </div>
+
+    <div class="model-grid reveal">
+      <div class="model-col fail">
+        <div class="model-heading">Battery-Based Logging (Current Standard)</div>
+        <div class="model-item"><span class="mi-icon">✕</span> Requires physical retrieval at every custody point</div>
+        <div class="model-item"><span class="mi-icon">✕</span> Return packaging and manual processing before data is available</div>
+        <div class="model-item"><span class="mi-icon">✕</span> Logs data post-event — discovery happens after custody transfer</div>
+        <div class="model-item"><span class="mi-icon">✕</span> Cannot scale to full pallet density</div>
+        <div class="model-item"><span class="mi-icon">✕</span> Issues no pass/fail verdict at transfer point</div>
+        <div class="model-item"><span class="mi-icon">✕</span> Fails in austere and contested environments</div>
+      </div>
+      <div class="model-col win">
+        <div class="model-heading">Rehzon Grid</div>
+        <div class="model-item"><span class="mi-icon" style="color:var(--accent)">✓</span> No retrieval. No return package. No processing lag.</div>
+        <div class="model-item"><span class="mi-icon" style="color:var(--accent)">✓</span> Pass/fail at the transfer point — before custody changes hands</div>
+        <div class="model-item"><span class="mi-icon" style="color:var(--accent)">✓</span> Scales to full pallet density — no per-shipment hardware cost</div>
+        <div class="model-item"><span class="mi-icon" style="color:var(--accent)">✓</span> Simultaneous: temperature, tamper, spoilage, fill-state</div>
+        <div class="model-item"><span class="mi-icon" style="color:var(--accent)">✓</span> Full governed provenance record at every node</div>
+        <div class="model-item"><span class="mi-icon" style="color:var(--accent)">✓</span> Battery-free — operates in any environment</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities" class="section">
+  <div class="section-inner">
+    <div class="section-label reveal">Capabilities</div>
+    <h2 class="section-title reveal">SIX LAYERS.<br><span class="acc">ONE PLATFORM.</span></h2>
+    <p class="section-body reveal">Rehzon Grid stacks six capabilities that today exist only in isolation — into one unified verification architecture. No current solution delivers all six together.</p>
+
+    <div class="flow-wrap reveal">
+      <div class="flow-track">
+        <div class="flow-node">
+          <div class="flow-step">01 · Packaging</div>
+          <div class="flow-label">Sensor<br>Embedded</div>
+        </div>
+        <div class="flow-node">
+          <div class="flow-step">02 · Transit</div>
+          <div class="flow-label">Shipment<br>Moves</div>
+        </div>
+        <div class="flow-node active">
+          <div class="flow-step">03 · Checkpoint</div>
+          <div class="flow-label">Passive<br>Interrogation</div>
+        </div>
+        <div class="flow-node active">
+          <div class="flow-step">04 · Verification</div>
+          <div class="flow-label">Pass / Fail<br>Issued</div>
+        </div>
+        <div class="flow-node active">
+          <div class="flow-step">05 · Record</div>
+          <div class="flow-label">Governed<br>Provenance</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cap-grid reveal">
+      <div class="cap-card">
+        <div class="cap-num">01</div>
+        <div class="cap-title">Package-Integrated Sensing</div>
+        <div class="cap-body">Simultaneously detects temperature excursion, tamper, spoilage, and fill-state from a single sensor element embedded in packaging. No batteries. No wires. External to container. Mass-producible.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-num">02</div>
+        <div class="cap-title">Battery-Free Thermal Verification</div>
+        <div class="cap-body">Verifies thermal exposure wirelessly via dielectric change measurement. Damage tolerant. Flexible form factor. Tunable temperature range. No electrical connections required.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-num">03</div>
+        <div class="cap-title">Material Anomaly Detection</div>
+        <div class="cap-body">Detects surface and subsurface anomalies — hidden damage, moisture intrusion, and material-state changes invisible to surface inspection or standard logging.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-num">04</div>
+        <div class="cap-title">Passive Checkpoint Identity</div>
+        <div class="cap-body">Long-range and wide-coverage passive identity at custody transfer points — without GPS and without tag power. Both range and coverage simultaneously, which conventional RFID cannot deliver.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-num">05</div>
+        <div class="cap-title">Anomaly-Aware AI</div>
+        <div class="cap-body">Learns nominal behavior from archived sensor data. Flags real-time deviation without requiring examples of failure. Active alerting before compromised materiel reaches the next checkpoint.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-num">06</div>
+        <div class="cap-title">Governed Provenance</div>
+        <div class="cap-body">Every scan, every pass/fail, every anomaly flag flows into a governed record with full lineage and cross-domain data relationships — decision-grade data for enterprise planning.</div>
+      </div>
+    </div>
+
+    <!-- FEATURE IMAGE -->
+    <div class="feature-image-wrap reveal">
+      <img src="Resonance_Grid.jpg" alt="Rehzon Grid — Battery-free verification at the custody transfer point">
+      <div class="feature-image-label">Battery-free verification at the custody transfer point</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DUAL USE -->
+<section id="dualuse" class="section">
+  <div class="section-inner">
+    <div class="section-label reveal">Defense & Commercial</div>
+    <h2 class="section-title reveal">ONE PLATFORM.<br><span class="acc">TWO MARKETS.</span></h2>
+    <p class="section-body reveal">The same verification architecture that addresses DoD's physical-state accountability gap serves every regulated logistics environment where high-value, temperature-sensitive goods change hands.</p>
+
+    <div class="du-grid reveal">
+      <div class="du-col defense">
+        <div class="du-badge">Defense</div>
+        <div class="du-heading">Strategic Logistics Assurance</div>
+        <p class="du-body">DLA and DoD logistics systems move $50B+ in materiel annually through a network with no battery-free, infrastructure-level physical verification layer at custody transfer points. Rehzon Grid closes that gap.</p>
+        <ul class="du-list">
+          <li>DLA pharmaceutical and medical cold-chain</li>
+          <li>Forward deployed logistics nodes</li>
+          <li>Strategic inventory assurance</li>
+          <li>Theater supply accountability</li>
+          <li>DHA medical materiel verification</li>
+        </ul>
+      </div>
+      <div class="du-col commercial">
+        <div class="du-badge">Commercial</div>
+        <div class="du-heading">Regulated Logistics Verification</div>
+        <p class="du-body">Battery-based loggers add cost, retrieval burden, and post-event discovery to every regulated shipment across food, biotech, chemical, and industrial sectors. Rehzon Grid scales to full pallet density with no per-shipment hardware cost.</p>
+        <ul class="du-list">
+          <li>Food and grocery distribution</li>
+          <li>3PL logistics providers</li>
+          <li>Cold storage operators</li>
+          <li>Biotech and clinical trial logistics</li>
+          <li>Chemical and industrial regulated goods</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILOT -->
+<section id="pilot" class="section">
+  <div class="section-inner">
+    <div class="section-label reveal">Pilot Program</div>
+    <h2 class="section-title reveal">CONTROLLED<br><span class="acc">VALIDATION.</span></h2>
+    <p class="section-body reveal">Rehzon Grid is preparing controlled validation pilots with regulated logistics and defense partners. The objective is to validate sensing accuracy, checkpoint reliability, and custody workflow integration under real operating conditions.</p>
+
+    <div class="pilot-status reveal">
+      <span class="status-dot"></span>
+      Early Stage · Seeking Pilot Partners
+    </div>
+
+    <div class="pilot-grid reveal">
+      <div class="pilot-card">
+        <div class="pilot-num">01</div>
+        <div class="pilot-title">Detection Sensitivity</div>
+        <div class="pilot-body">Validate temperature excursion detection, tamper indication, and moisture detection against defined thresholds under controlled exposure conditions.</div>
+      </div>
+      <div class="pilot-card">
+        <div class="pilot-num">02</div>
+        <div class="pilot-title">Scan Reliability</div>
+        <div class="pilot-body">Measure interrogation success rates at custody transfer points across realistic dock and warehouse environments.</div>
+      </div>
+      <div class="pilot-card">
+        <div class="pilot-num">03</div>
+        <div class="pilot-title">Operational Friction</div>
+        <div class="pilot-body">Quantify time required for checkpoint verification and measure integration ease into existing compliance workflows.</div>
+      </div>
+      <div class="pilot-card">
+        <div class="pilot-num">04</div>
+        <div class="pilot-title">Provenance Record Quality</div>
+        <div class="pilot-body">Validate that custody events produce complete, governed, audit-ready data records with full lineage traceable across each node.</div>
+      </div>
+    </div>
+
+    <div class="metrics-table reveal">
+      <div class="metric-row"><span class="metric-name">Detection accuracy under defined exposure conditions</span><span class="metric-tag">Measuring</span></div>
+      <div class="metric-row"><span class="metric-name">Scan reliability at custody transfer points</span><span class="metric-tag">Measuring</span></div>
+      <div class="metric-row"><span class="metric-name">False positive and false negative rates</span><span class="metric-tag">Measuring</span></div>
+      <div class="metric-row"><span class="metric-name">Time required for checkpoint verification</span><span class="metric-tag">Measuring</span></div>
+      <div class="metric-row"><span class="metric-name">Compliance and custody workflow integration</span><span class="metric-tag">Measuring</span></div>
+      <div class="metric-row"><span class="metric-name">Governed provenance record completeness</span><span class="metric-tag">Measuring</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="section-inner">
+    <div class="section-label reveal">Contact</div>
+    <h2 class="section-title reveal">GET<br><span class="acc">INVOLVED.</span></h2>
+    <p class="section-body reveal">Whether you are a logistics operator, a defense partner, an implementation partner, or an investor — we want to hear from you.</p>
+
+    <div class="contact-statement reveal">
+      PILOT PARTNERS.<br>
+      IMPLEMENTATION PARTNERS.<br>
+      <span class="acc">BOTH WELCOME.</span>
+    </div>
+
+    <div class="contact-items reveal">
+      <div class="contact-item">
+        <div class="contact-item-label">Program</div>
+        <div class="contact-item-val">Rehzon Grid Systems</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Parent Organization</div>
+        <div class="contact-item-val">Umanah Systems Group</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Status</div>
+        <div class="contact-item-val">Infrastructure in Development</div>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" id="contactForm">
+      <div class="form-field">
+        <label class="form-label">Full Name</label>
+        <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Organization</label>
+        <input type="text" name="organization" placeholder="Company or institution" autocomplete="organization">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Email Address</label>
+        <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Inquiry Type</label>
+        <select name="inquiry_type" required>
+          <option value="" disabled selected>Select one</option>
+          <option>Pilot Participation — Defense / Government</option>
+          <option>Pilot Participation — Commercial Logistics</option>
+          <option>Implementation Partnership</option>
+          <option>Investment Inquiry</option>
+          <option>Federal / Government Procurement</option>
+          <option>General Inquiry</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Message</label>
+        <textarea name="message" rows="5" placeholder="Tell us about your operation and what you need." required></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" id="submitBtn">Send Message →</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="accent-bar"></div>
+<footer>
+  <div class="footer-logo">Rehzon<span> Grid</span></div>
+  <div class="footer-tagline">Battery-Free Verification Infrastructure</div>
+  <div class="footer-usg">A Umanah Systems Group Program</div>
+  <div class="footer-links">
+    <a href="/privacy.html">Privacy Policy</a>
+    <span>·</span>
+    <a href="/terms.html">Terms of Use</a>
+  </div>
+  <div class="footer-copy">© Rehzon Grid Systems. All rights reserved.</div>
+</footer>
+
+<script>
+/* MOBILE MENU */
+const hamburger=document.getElementById('hamburger');
+const mobileMenu=document.getElementById('mobileMenu');
+hamburger.addEventListener('click',()=>{mobileMenu.classList.toggle('open');});
+function closeMobile(){mobileMenu.classList.remove('open');}
+
+/* SCROLL REVEAL */
+const revealObserver=new IntersectionObserver((entries)=>{
+  entries.forEach((entry)=>{
+    if(entry.isIntersecting){
+      setTimeout(()=>{entry.target.classList.add('visible');},entry.target.dataset.delay||0);
+      revealObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.dataset.delay=(i%5)*80;revealObserver.observe(el);});
+
+/* CARD STAGGER */
+const cardObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const cards=entry.target.querySelectorAll('.cap-card,.pilot-card,.stat-card,.du-list li');
+      cards.forEach((card,i)=>{
+        card.style.opacity='0';card.style.transform='translateY(20px)';
+        card.style.transition=`opacity 0.5s ease ${i*70}ms,transform 0.5s ease ${i*70}ms`;
+        requestAnimationFrame(()=>{setTimeout(()=>{card.style.opacity='1';card.style.transform='translateY(0)';},50);});
+      });
+      cardObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:0.05});
+document.querySelectorAll('.cap-grid,.pilot-grid,.stat-grid,.du-list').forEach(el=>{cardObserver.observe(el);});
+
+/* CONTACT FORM */
+const contactForm=document.getElementById('contactForm');
+const submitBtn=document.getElementById('submitBtn');
+if(contactForm){
+  contactForm.addEventListener('submit',async function(e){
+    e.preventDefault();
+    submitBtn.disabled=true;submitBtn.textContent='Sending...';
+    try{
+      const res=await fetch('https://formspree.io/f/xeelnkqj',{method:'POST',body:new FormData(contactForm),headers:{'Accept':'application/json'}});
+      if(res.ok){window.location.href='/thanks.html';}
+      else{submitBtn.disabled=false;submitBtn.textContent='Send Message →';alert('Something went wrong. Please try again or email us directly.');}
+    }catch(err){submitBtn.disabled=false;submitBtn.textContent='Send Message →';alert('Network error. Please check your connection and try again.');}
+  });
+}
+
+/* NAV SHRINK */
+window.addEventListener('scroll',()=>{
+  const nav=document.querySelector('nav');
+  const isMobile=window.innerWidth<=768;
+  if(window.scrollY>60){nav.style.padding=isMobile?'12px 20px':'12px 48px';nav.style.background='rgba(7,9,13,0.97)';}
+  else{nav.style.padding=isMobile?'16px 20px':'20px 48px';nav.style.background='rgba(7,9,13,0.9)';}
+});
+</script>
+</body>
+</html>
